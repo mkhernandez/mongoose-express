@@ -7,6 +7,7 @@ const app = express();
 const port = 5000;
 const localhost = "localhost";
 const log = console.log;
+const categories = ["fruits", "vegetables", "dairy", "poultry"];
 
 // Connection to mongoose
 mongoose.connect('mongodb://127.0.0.1:27017/farmStand')// <= In here 127.0.0.1 because error thrown with "localhost"
@@ -40,7 +41,7 @@ app.get("/products", async (req, res) => {
 
 // GET new product form route
 app.get('/products/new', (req, res) => {
-    res.render("products/new");
+    res.render("products/new", { categories });
 });
 
 // POST ROUTE to add a new product
@@ -61,7 +62,7 @@ app.get('/products/:id', async (req, res) => {
 app.get('/products/:id/edit', async (req, res) => {
     const {id} = req.params;
     const product = await Product.findById(id);
-    res.render("products/edit", { product });
+    res.render("products/edit", { product, categories });
 });
 
 // PUT ROUTE update a product and add to db. Can use a post route and no method override instead
