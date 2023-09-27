@@ -23,9 +23,18 @@ app.set('view engine', 'ejs');
 
 // ROUTES 
 // These will be moved eventually into their own file.
+// GET ALL PRODUCTS
 app.get("/products", async (req, res) => {
     const products = await Product.find({});
+    log(products);
     res.render("products/index", { products });
+});
+
+// SHOW DETAILS OF ONE PRODUCT
+app.get('/products/:id', async (req, res) => {
+    const {id} = req.params;
+    const product = await Product.findById(id);
+    res.render("products/show", { product });
 });
 
 app.listen(port, localhost, () => {
