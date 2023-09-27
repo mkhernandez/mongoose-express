@@ -23,8 +23,9 @@ app.set('view engine', 'ejs');
 
 // ROUTES 
 // These will be moved eventually into their own file.
-app.get("/dogs", (req, res) => {
-    res.send("WOOF!");
+app.get("/products", async (req, res) => {
+    const products = await Product.find({});
+    res.render("products/index", { products });
 });
 
 app.listen(port, localhost, () => {
