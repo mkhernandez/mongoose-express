@@ -72,6 +72,13 @@ app.put("/products/:id", async (req, res) => {
     res.redirect(`/products/${product._id}`);
 });
 
+// DELETE ROUTE deleting a product
+app.delete("/products/:id", async (req, res) => {
+    const {id} = req.params;
+    await Product.findByIdAndDelete(id);
+    res.redirect("/products");
+});
+
 app.listen(port, localhost, () => {
     log(`Listening on http://${localhost}: ${port}`);
 });
