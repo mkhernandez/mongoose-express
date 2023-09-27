@@ -1,13 +1,14 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const Product = require('./models/product');
 const app = express();
 const port = 5000;
 const localhost = "localhost";
 const log = console.log;
 
 // Connection to mongoose
-mongoose.connect('mongodb://127.0.0.1:27017/shopApp')// <= In here 127.0.0.1 because error thrown with "localhost"
+mongoose.connect('mongodb://127.0.0.1:27017/farmStand')// <= In here 127.0.0.1 because error thrown with "localhost"
 .then(() => {
     log("MONGO CONNECTION OPEN!");
 })
